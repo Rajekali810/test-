@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>e-Xamine (Engineers) StudyHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        /* General Page Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2C5F2D, #97BC62FF, #E5F993FF); /* Citrus background */
+            color: #000;
+        }
+
+        /* Header Section */
+        header {
+            background-color:#9FC5E8;
+            padding: 20px 0;
+            text-align: center;
+            color: #FFF;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        header img {
+            height: 60px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            margin-top: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700; /* Gold hover effect */
+        }
+
+        nav ul li ul {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #003366;
+            display: none;
+            padding: 10px 0;
+            border-radius: 5px;
+        }
+
+        nav ul li ul li {
+            margin: 0;
+        }
+
+        nav ul li ul li a {
+            display: block;
+            padding: 10px 20px;
+        }
+
+        nav ul li:hover ul {
+            display: block;
+        }
+
+        nav ul li ul li ul {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            display: none;
+        }
+
+        nav ul li ul li:hover ul {
+            display: block;
+        }
+
+        /* Flashing Button for Live Test */
+        .flashing-btn {
+            animation: flash 1.5s infinite;
+            background-color: black;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+
+        .flashing-btn:hover {
+            background-color: #FFD700;
+        }
+
+        @keyframes flash {
+            0%, 100% {
+                background-color: black;
+                color: white;
+            }
+            50% {
+                background-color: #FFD700;
+                color: black;
+            }
+        }
+
+        /* Course Section Styles */
+        .courses {
+            background: linear-gradient(135deg, #98FB98, #00FF7F); /* Light greenish-yellow and lime green */
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            display: flex;
+            overflow-x: auto;
+        }
+
+        .course {
+            flex: 1;
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .course img {
+            width: 80px;
+        }
+
+        .course p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Main Button Section */
+        .button-section {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .button-section a {
+            background-color: black;
+            color: white;
+            padding: 15px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .button-section a:hover {
+            background-color: #FFD700;
+        }
+
+        /* Practice Section */
+        .card {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 20px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+        }
+
+        .inner {
+            width: 45%;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .inner h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+        .inner .practice-item {
+            margin-bottom: 15px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .inner .practice-item a {
+            color: #0072ff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .inner .practice-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Successful Students Section */
+        .students-section {
+            background-color: #333;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: center;
+        }
+
+        .students-section h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .student {
+            display: inline-block;
+            margin: 10px;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .student img {
+            width: 60px;
+            border-radius: 50%;
+        }
+
+        .student p {
+            margin: 10px 0 0;
+        }
+
+        /* Contact Form */
+        .form-new {
+            width: 100%;
+            max-width: 500px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.15); /* Glassmorphism */
+            border-radius: 15px;
+            margin: 20px auto;
+            backdrop-filter: blur(10px); /* Blurred glass effect */
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .form-new h3 {
+            text-align: center;
+            font-size: 20px;
+            color: #ffffff;
+        }
+
+        .form-new label {
+            display: block;
+            font-size: 14px;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .form-new input,
+        .form-new textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+        }
+
+        .form-new button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff4b1f;
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .form-new button:hover {
+            background-color: #ff9068;
+        }
+
+        /* Footer */
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+/* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 { font-size: 20px; }
+      header h3 { font-size: 16px; }
+      nav ul { flex-direction: column; align-items: center; }
+      .card { flex-direction: column; }
+      .inner { width: 100%; }
+      .students-section { text-align: center; }
+      .student { width: 80px; }
+      .button-container { flex-direction: column; gap: 15px; }
+    }
+
+
+
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>QWICKLUMEN INSTITUTE FOR ENGINEERS</h1><br><h3>(Kolkata, Newtown)</h3>
+        <img src="https://i.ibb.co/cbJ1G30/qwicklumen.png" alt="Logo"> <!-- Update this with the actual path to the logo -->
+        
+       <!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="About_us.html">About Us</a></li>
+        <li><a href="Contact_us.html">Contact Us</a></li>
+        <li><a href="Buy_ PWD_ Engineers _Sets.html">Buy PWD Engineers Sets</a></li>
+        <li><a href="Practice_mcq.html">Practice MCQ</a></li>
+        <li><a href="job.html">Apply for Job</a></li>
+
+
+    </ul>
+</nav>
+
+<style>
+    /* Navigation Bar Styles */
+    nav {
+        background-color: #9FC5E8; /* Dark background for the navigation bar */
+        padding: 10px;
+        border-radius: 5px; /* Slightly rounded corners */
+    }
+
+    nav ul {
+        list-style: none; /* Remove default list styles */
+        padding: 0;
+        margin: 0;
+        display: flex; /* Align list items horizontally */
+        justify-content: space-around; /* Space items evenly */
+    }
+
+    nav ul li {
+        display: inline; /* Display inline */
+    }
+
+    nav ul li a {
+        text-decoration: none; /* Remove underline */
+        color: white; /* White text color */
+        padding: 15px 20px; /* Padding for button-like appearance */
+        border-radius: 5px; /* Rounded corners for buttons */
+        background-color: blue; /* Button background color */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 3D effect shadow */
+        transition: transform 0.2s, box-shadow 0.2s; /* Smooth transitions */
+    }
+
+    nav ul li a:hover {
+        transform: translateY(-2px); /* Lift effect on hover */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+    }
+</style>
+
+    </header>
+
+    <!-- Flashing Live Test Button -->
+    <div class="button-container">
+    <div class="button-section">
+        <a href="#" class="flashing-btn">WBSEDCL Online Test</a>
+    </div>
+    <div class="button-section">
+        <a href="#" class="flashing-btn">WBSETCL Online Test</a>
+    </div>
+<div class="button-section">
+        <a href="#" class="flashing-btn">KMC/KMDA Online Test</a>
+    </div>
+<div class="button-section">
+        <a href="#" class="flashing-btn">PSC(AE/JE)Mock Test</a>
+    </div>
+<div class="button-section">
+    <a href="#" class="flashing-btn">Non-Tech Online Test</a>
+    <ul class="dropdown">
+        <li><a href="English.html">English</a></li>
+        <li><a href="Gk.html">GK</a></li>
+        <li><a href="Aptitude.html">Aptitude</a></li>
+    </ul>
+</div>
+
+<style>
+    /* Dropdown Styles */
+    .dropdown {
+        display: none; /* Hide dropdown by default */
+        position: absolute; /* Position dropdown relative to parent */
+        background-color: #FFFFFF; /* Background color of dropdown */
+        min-width: 160px; /* Minimum width of dropdown */
+        z-index: 1; /* Make sure dropdown is above other content */
+        margin-top: 10px; /* Space from the parent item */
+        padding: 0; /* Remove padding from dropdown */
+        list-style-type: none; /* Remove bullet points */
+    }
+
+    .button-section {
+        position: relative; /* Set position for absolute positioning of dropdown */
+    }
+
+    .button-section:hover .dropdown {
+        display: block; /* Show dropdown on hover of button */
+    }
+
+    .dropdown li {
+        padding: 10px; /* Padding for dropdown items */
+    }
+
+    .dropdown li a {
+        display: block; /* Make dropdown links block elements */
+        color: white; /* Text color for dropdown items */
+        text-decoration: none; /* Remove underline */
+    }
+
+    .dropdown li a:hover {
+        background-color: #555; /* Background on hover for dropdown items */
+    }
+</style>
+
+</div>
+
+<style>
+    /* Button Container Style */
+    .button-container {
+        display: flex; /* Use flexbox to align children side by side */
+        justify-content: center; /* Center the buttons horizontally */
+        gap: 20px; /* Space between buttons */
+    }
+
+    .button-section {
+        /* Optional: Add any additional styling for button sections */
+    }
+
+    .flashing-btn {
+        display: inline-block; /* Make sure the button behaves like a block element */
+        padding: 15px 25px; /* Button padding */
+        color: white; /* Text color */
+        background-color: #007bff; /* Button background color */
+        border-radius: 5px; /* Rounded corners */
+        text-decoration: none; /* Remove underline */
+        transition: background-color 0.3s ease; /* Transition for background color */
+    }
+
+    .flashing-btn:hover {
+        background-color: #0056b3; /* Darken button on hover */
+    }
+</style>
+
+
+
+    <div class="card">
+    <div class="inner">
+    <h2><p style="color:orange;"><b>West Bengal Electrical Examfunda</b></p></h2>
+    
+    <div class="practice-item">
+        <a href="Practice_mcq.html" style="text-decoration: none;">
+            <span style="background-color: #003366; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; margin-left: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">WB PSC-JE/AE Mock Test- Click Here</span>
+        </a>
+    </div>
+    
+    <div class="practice-item">
+        <a href="kmc_kmda.html" style="text-decoration: none;">
+            <span style="background-color: #003366; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; margin-left: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">KMC/KMDA JE/AE Pdf - Click Here</span>
+        </a>
+    </div>
+    
+    <div class="practice-item">
+        <a href="ju.html" style="text-decoration: none;">
+            <span style="background-color: #003366; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; margin-left: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;"> Electrical Question Papers, Jadavpur University -Click Here</span>
+        </a>
+    </div>
+    </div>
+
+<div class="inner">
+    <h2><p style="color:orange;"><b>All India Electrical Examfunda</b></p></h2>
+    
+    <div class="practice-item">
+        <a href="PSC_Electrical.html" style="text-decoration: none;">
+            <span style="background-color: #003366; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; margin-left: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">All India PSC-JE/AE Mock Test- Click Here</span>
+        </a>
+    </div>
+    
+    <div class="practice-item">
+        <a href="All_India_exam_pdf.html" style="text-decoration: none;">
+            <span style="background-color: #003366; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; margin-left: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">All India PSC-JE/AE Pdf - Click Here</span>
+        </a>
+    </div>
+    
+    <div class="practice-item">
+        <a href="Powergrid_and Isro_Qp.html" style="text-decoration: none;">
+            <span style="background-color: #003366; color: white; padding: 10px 20px; border-radius: 5px; font-size: 16px; margin-left: 5px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">PowerGrid/ISRO Pdf - Click Here</span>
+        </a>
+    </div>
+</div>
+
+</div>
+
+<style>
+    .card {
+        display: flex; /* Align inner cards side by side */
+        justify-content: space-between; /* Space between inner cards */
+        padding: 20px;
+        border-radius: 15px; /* Rounded corners */
+        background: #f9f9f9; /* Light background */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for 3D effect */
+        transition: transform 0.3s; /* Smooth transition for hover effect */
+        position: relative; /* Position relative for inner elements */
+        margin: 20px 0; /* Spacing above and below */
+    }
+
+    .inner {
+        flex: 1; /* Each inner section takes equal space */
+        margin: 0 10px; /* Margin between inner sections */
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        border-radius: 10px; /* Rounded corners for inner sections */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Inner shadow for 3D effect */
+        transition: transform 0.3s; /* Smooth transition for hover */
+    }
+
+    .inner:hover {
+        transform: translateY(-5px); /* Lift effect on hover */
+    }
+
+    h2 {
+        margin-bottom: 15px; /* Space below headings */
+        color: #333; /* Darker color for headings */
+        text-align: center; /* Center align headings */
+    }
+
+    .practice-item {
+        margin: 10px 0; /* Space between items */
+    }
+
+    .practice-item a {
+        display: block; /* Each item takes full width */
+        padding: 10px;
+        border-radius: 5px; /* Rounded corners for links */
+        text-decoration: none; /* No underline */
+        color: #007BFF; /* Blue color for links */
+        background: rgba(0, 123, 255, 0.1); /* Light blue background */
+        transition: background 0.3s, transform 0.3s; /* Transition for hover effects */
+    }
+
+    .practice-item a:hover {
+        background: rgba(0, 123, 255, 0.3); /* Darker blue on hover */
+        transform: translateY(-2px); /* Lift effect on hover */
+    }
+</style>
+
+
+    <!-- Successful Students Section -->
+    <div class="students-section">
+        <h2>Our Successful Students</h2>
+        <div class="student">
+            <img src="path/to/student1.jpg" alt="Student 1"> <!-- Update image path -->
+            <p>Student Name 1</p>
+        </div>
+        <div class="student">
+            <img src="path/to/student2.jpg" alt="Student 2"> <!-- Update image path -->
+            <p>Student Name 2</p>
+        </div>
+        <!-- Repeat as needed for other students -->
+    </div>
+
+    <!-- Contact Form Section -->
+    <div class="form-new">
+        <h3>Contact for Admission</h3>
+        <form id="google-sheet-form">
+            <label for="Name">Your Name *</label>
+            <input type="text" name="Name" id="Name" placeholder="Enter your name" required>
+
+            <label for="Email">Your Email *</label>
+            <input type="email" name="Email" id="Email" placeholder="Enter your email" required>
+
+            <label for="Phone">Your Contact Number *</label>
+            <input type="text" name="Phone" id="Phone" placeholder="Enter your contact number" required>
+
+            <label for="Message">Your Message *</label>
+            <textarea name="Message" id="Message" rows="4" placeholder="Enter your message" required></textarea>
+
+            <button type="button" onclick="submitForm()">Send</button>
+        </form>
+    </div>
+<footer>
+    <p style="color: #4CAF50;"><i class="fas fa-phone-alt"></i> Contact Us: +7908684378 <br> <i class="fas fa-envelope"></i> Email: info@examine.com</p><br>
+    <p style="color: #4CAF50;">Designer:Md Rajek Ali(PWD Engg)</p>
+    <p style="color: #4CAF50;">© 2024 WebXamina. All rights reserved.</p>
+</footer>
+
+
+
+
+    <!-- Contact Form Script -->
+    <script>
+        function submitForm() {
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxKXXZVSz7JhLWBYWi09iVREdlgDRePNwKhfxO7whCOMC6Zuiq2mCGFQccocRxNruMtrg/exec';
+            const form = document.getElementById('google-sheet-form');
+            const formData = new FormData(form);
+
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
+                    alert("Thank you! Your message has been sent.");
+                    form.reset();  // Clear the form after submission
+                })
+                .catch(error => alert("Oops! Something went wrong. Please try again."));
+        }
+    </script>
+
+</body>
+
+</html>
